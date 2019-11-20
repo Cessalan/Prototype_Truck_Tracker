@@ -1,4 +1,11 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: fatsy
+ * Date: 2019-11-19
+ * Time: 11:33 PM
+ */
+
 require("DBManager_READ.php");
 ?>
 
@@ -298,41 +305,35 @@ require("DBManager_READ.php");
 </head>
 <body>
 
-
 <div class="limiter">
-
     <div class="container-table100">
         <div class="wrap-table100">
             <div class="table100">
                 <table>
                     <thead>
                     <tr class="table100-head">
-                    <td><a href="formIndex.php" style="color:white">Go Back To Home page</a></td>
-                    <td><a href="summaryReport.php" style="color:white">See Summary Report</a>
-                    </td><td><a href="DetailsReport.php" style="color:white">See Details Report</a></td>
+                        <td><a href="formIndex.php" style="color:white">Go Back To Home page</a></td>
+                        <td><a href="summaryReport.php" style="color:white">See Summary Report</a>
+                        </td><td><a href="DetailsReport.php" style="color:white">See Details Report</a></td>
                         <td><a href="exceptionReport.php" style="color:white">See Exception Report</a></td>
                     </tr>
 
                     </thead>
                 </table>
-                <h1 align="center" style="color:white"> Details</h1>
+                <h1 align="center" style="color:white"> Summary</h1>
                 <table>
                     <thead>
                     <tr class="table100-head">
-                        <th class="column1">Truck Number</th>
-                        <th class="column1">Driver</th>
-                        <th class="column1">Co Driver</th>
-                        <th class="column1">Initial Location</th>
-                        <th class="column1">Destination</th>
-                        <th class="column1">Distance Driven(miles)</th>
-                        <th class="column1">Gallons</th>
-                        <th class="column1">Taxes</th>
-                        <th class="column1">Receipt Number</th>
+                        <th class="column1">Tax Average($ USD)</th>
+                        <th class="column1">Average of Gallon Purchased</th>
+                        <th class="column1">Average Distance Driven</th>
+
+
 
                     </tr>
                     </thead>
                     <tbody>
-                        <?php echo getDetails(); ?>
+                        <?php echo getSummary(); ?>
                     </tbody>
                 </table>
             </div>
