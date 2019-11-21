@@ -1,3 +1,7 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="reportDesign.css">
+</head>
 <?php
 require("DBco.php");
 
@@ -21,14 +25,14 @@ $sqlInsertTrip="INSERT INTO tripinfo
 (IntialLocation,Destination,DistanceKM,departDate,ArrivalDate,Station,State,milesDriven)
 values('$location','$destination',$distance,'$departDate','$returnDate','$stationName','$state',$drivenMiles)";
 if($conn->query($sqlInsertTrip)===true){
-    echo "new record inserted in tripinfo";
+    echo "<div class='container'> <h2>New Entry has Been Successful</h2>Trip information have been addeed<br>";
 }else{
     echo $conn->error;
 }
 
 
 $latestTripId=getMostRecentTripId();
- //echo $latestTripId;
+//echo $latestTripId;
 
 //get Driver info
 $truck_number=$_GET["truck_number"];
@@ -41,7 +45,7 @@ $tripNum=$_GET["tripNum"];
 $sqlInsertDriver="INSERT INTO driverinfo(TripID,TruckNumber,DriverNumber,CoDriverNumber,TripNumber)
                 values($latestTripId,'$truck_number',$driverNum,$coDriverNum,$tripNum)";
 if($conn->query($sqlInsertDriver)===true){
-    echo "new record inserted in driverInfo";
+    echo "Driver information have been added<br>";
 }else{
     echo $conn->error;
 }
@@ -56,12 +60,15 @@ $tax=$_GET["tax"];
 $sqlInsertExpenses="INSERT INTO expenses (FuelReceipt,Gallons,Tax,TripId)
 values($receiptNum,$gallon,$tax,$latestTripId)";
 if($conn->query($sqlInsertExpenses)===true){
-    echo "new record inserted in expenses";
+    echo "Expenses information have been added<br><p ><b>Thank you.<b></b><p></p><br><a href='formIndex.php'>Go Back To Home Page</a></div></div>";
 }else{
     echo $conn->error;
 }
 
 ?>
+
+</html>
+
 
 
 

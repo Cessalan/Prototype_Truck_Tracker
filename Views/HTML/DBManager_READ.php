@@ -18,7 +18,7 @@
 
          $results=$conn->query($sqlGetAll)or die($conn->error);
          if($results->num_rows<1){
-             $tableRow= "We are sorry,there is currently no date to produce a report, please come back later";
+             $tableRow="<tr><td><h1>No Data has been entered yet, please come back later.</h1><td></td></tr>";
          }else{
 
              while($rec=$results->fetch_array()){
@@ -48,7 +48,7 @@
         $result=$conn->query($sqlgetAvg) or die($conn->error);
         $tableRow="";
         if($result->num_rows<1){
-        $tableRow="We are sorry, data for the summary report is presently unavailable.Please come back later";
+        $tableRow="<tr><td><h1>We are sorry, no date can be found.</h1><td></td></tr>";
         }else{
             while($rec=$result->fetch_array()){
                 $tableRow.="<tr>";
@@ -74,7 +74,7 @@
          $result=$conn->query($sqlGetTrip)or die($conn->error);
          $tableRow="";
          if($result->num_rows<1){
-            $tableRow="No trip above 500 miles found";
+          $tableRow="<tr><td><h1>No Trips above 500 miles found.</h1><td></td></tr>";
          }else{
              while($rec=$result->fetch_array()){
                  $tableRow.="<tr>";
@@ -98,7 +98,7 @@
          $result=$conn->query($sqlGallons4) or die ($conn->error);
          $tableRow="";
          if($result->num_rows<1){
-             $tableRow="No purchase of above 4 gallons";
+             $tableRow= $tableRow="<tr><td><h1>No purchase of Gallons above 4 found.</h1><td></td></tr>";;
 
          }else{
              while($rec=$result->fetch_array()){
