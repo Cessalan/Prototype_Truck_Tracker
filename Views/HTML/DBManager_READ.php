@@ -64,12 +64,12 @@
 
         return $tableRow;
      }
-     function getTripsAbove500(){
+     function getTripsLess500(){
          $conn=connect();
 
          $sqlGetTrip= "SELECT d.TruckNumber,d.DriverNumber,t.milesDriven,t.Destination,t.IntialLocation
                         FROM   driverinfo d, tripinfo t     
-                        WHERE d.TripID=t.TripID AND (t.milesDriven > 500)";
+                        WHERE d.TripID=t.TripID AND (t.milesDriven < 500)";
 
          $result=$conn->query($sqlGetTrip)or die($conn->error);
          $tableRow="";

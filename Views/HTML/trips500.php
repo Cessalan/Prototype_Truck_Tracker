@@ -39,7 +39,7 @@ require("DBManager_READ.php");
 
                     </thead>
                 </table>
-                <h1 align="center" style="color:white"> Trips above 500 miles</h1>
+                <h1 align="center" style="color:white"> Trips less than 500 miles</h1>
                 <div class="container">
                     <img src="Capture.jpg"  width="80" height="45" align="left">
                     This shows the trips where the driver drove less than 500 miles.
@@ -59,7 +59,7 @@ require("DBManager_READ.php");
                     </tr>
                     </thead>
                     <tbody>
-                        <?php echo getTripsAbove500(); ?>
+                        <?php echo getTripsLess500(); ?>
                     </tbody>
                 </table>
             </div>
