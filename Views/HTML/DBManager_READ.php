@@ -64,4 +64,78 @@
 
         return $tableRow;
      }
+     function getTripsAbove500(){
+         $conn=connect();
+
+         $sqlGetTrip= "SELECT d.TruckNumber,d.DriverNumber,t.milesDriven,t.Destination,t.IntialLocation
+                        FROM   driverinfo d, tripinfo t     
+                        WHERE d.TripID=t.TripID AND (t.milesDriven > 500)";
+
+         $result=$conn->query($sqlGetTrip)or die($conn->error);
+         $tableRow="";
+         if($result->num_rows<1){
+            $tableRow="No trip above 500 miles found";
+         }else{
+             while($rec=$result->fetch_array()){
+                 $tableRow.="<tr>";
+                 $tableRow.=" <td class=\"column1\">".$rec['DriverNumber']."</td>";
+                 $tableRow.=" <td class=\"column1\">".$rec['TruckNumber']."</td>";
+                 $tableRow.=" <td class=\"column1\">".$rec['IntialLocation']."</td>";
+                 $tableRow.=" <td class=\"column1\">".$rec['Destination']."</td>";
+                 $tableRow.=" <td class=\"column1\">".$rec['milesDriven']."</td>";
+                 $tableRow.="</tr>";
+             }
+         }
+         return $tableRow;
+
+     }
+     function getGallonsAbove4(){
+         $conn=connect();
+         $sqlGallons4="SELECT d.TruckNumber,d.DriverNumber,
+                      e.FuelReceipt,e.Gallons,t.Station
+                   FROM   driverinfo d, expenses e, tripinfo t     
+                     WHERE d.TripID=t.TripID and t.TripID=e.TripID and (e.Gallons > 4)";
+         $result=$conn->query($sqlGallons4) or die ($conn->error);
+         $tableRow="";
+         if($result->num_rows<1){
+             $tableRow="No purchase of above 4 gallons";
+
+         }else{
+             while($rec=$result->fetch_array()){
+                 $tableRow.="<tr>";
+                 $tableRow.=" <td class=\"column1\">".$rec['DriverNumber']."</td>";
+                 $tableRow.=" <td class=\"column1\">".$rec['TruckNumber']."</td>";
+                 $tableRow.=" <td class=\"column1\">".$rec['FuelReceipt']."</td>";
+                 $tableRow.=" <td class=\"column1\">".$rec['Gallons']."</td>";
+                 $tableRow.=" <td class=\"column1\">".$rec['Station']."</td>";
+                 $tableRow."</tr>";
+             }
+         }
+            return $tableRow;
+     }
+     function getTaxBelow100(){
+        $conn=connect();
+        $sqlGetTax="SELECT d.TruckNumber,d.DriverNumber,
+                             e.FuelReceipt,e.Tax,t.Station,t.State
+                    FROM   driverinfo d, expenses e, tripinfo t 
+                     WHERE d.TripID=t.TripID and t.TripID=e.TripID and (e.Tax <100)";
+        $result=$conn->query($sqlGetTax) or die($conn->error);
+        $tableRow="";
+        if($result->num_rows<1){
+            $tableRow="<tr><td><h1>No purchase with Tax under $100 USD found.</h1><td></td></tr>";
+        }else{
+            while($rec=$result->fetch_array()){
+                $tableRow.="<tr>";
+                $tableRow.=" <td class=\"column1\">".$rec['DriverNumber']."</td>";
+                $tableRow.=" <td class=\"column1\">".$rec['TruckNumber']."</td>";
+                $tableRow.=" <td class=\"column1\">".$rec['FuelReceipt']."</td>";
+                $tableRow.=" <td class=\"column1\">".$rec['Tax']."</td>";
+                $tableRow.=" <td class=\"column1\">".$rec['State']."</td>";
+                $tableRow.="</tr>";
+
+            }
+        }
+       return $tableRow;
+
+     }
 
